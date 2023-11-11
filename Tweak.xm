@@ -8,7 +8,13 @@
 
 
 #import "Interfaces.h"
+
+#ifndef THEOS_PACKAGE_SCHEME_ROOTHIDE
 #import <rootless.h>
+#else
+#import <roothide.h>
+#define ROOT_PATH_NS jbroot
+#endif
 
 BOOL initialized = NO;
 id manager = nil;

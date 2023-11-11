@@ -16,3 +16,10 @@ if [ -f Reflex ]; then
 	sed -i"" -e "s|^install-name:    '.*'|install-name:    '/var/jb/Library/MobileSubstrate/DynamicLibraries/libFLEX.dylib'|" Reflex/FLEX.framework/FLEX.tbd
 fi
 make package THEOS_PACKAGE_SCHEME=rootless FINALPACKAGE=1 PACKAGE_VERSION=${TAGNAME#v}+rootless
+
+echo 'Building for roothide'
+make clean
+if [ -f Reflex ]; then
+	sed -i"" -e "s|^install-name:    '.*'|install-name:    '@loader_path/.jbroot/Library/MobileSubstrate/DynamicLibraries/libFLEX.dylib'|" Reflex/FLEX.framework/FLEX.tbd
+fi
+make package THEOS_PACKAGE_SCHEME=roothide FINALPACKAGE=1 PACKAGE_VERSION=${TAGNAME#v}+roothide

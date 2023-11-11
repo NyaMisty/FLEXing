@@ -1,4 +1,7 @@
 export ARCHS = arm64 armv7 armv7s arm64e
+ifeq ($(THEOS_PACKAGE_SCHEME),roothide)
+export ARCHS = arm64 arm64e
+endif
 export TARGET = iphone:latest:9.0
 INSTALL_TARGET_PROCESSES = SpringBoard
 include $(THEOS)/makefiles/common.mk
